@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --bg-color: #fbfdf7;
+  --text-color: #1b1b1b;
+  --card-bg: #ffffff;
+  --header-bg: #06420d;
+  --border-color: #e5e5e5;
+  --accent: #9bbf73;
+}
+
+body.dark {
+  --bg-color: #0f172a;
+  --text-color: #e5e7eb;
+  --card-bg: #1e293b;
+  --header-bg: #020617;
+  --border-color: #334155;
+  --accent: #7dd3a6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--header-bg);
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  padding: 10px 80px;
+}
+.left_header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+img {
+  width: 55px;
+}
+.right_header {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.theme-toggle {
+  width: 50px;
+  height: 26px;
+  background: #e5e7eb;
+  border-radius: 30px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+}
+
+.theme-toggle .icon {
+  font-size: 14px;
+  z-index: 2;
+}
+
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  left: 3px;
+  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .theme-toggle {
+  background: #334155;
+}
+
+body.dark .theme-toggle::before {
+  left: 27px;
+}
+
+.sun {
+  opacity: 1;
+}
+
+.moon {
+  opacity: 0.3;
+}
+
+body.dark .sun {
+  opacity: 0.3;
+}
+
+body.dark .moon {
+  opacity: 1;
+}
+
+.nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #fff;
+  color: var(--header-bg);
+  transition: 0.3s;
+}
+
+.nav a.active {
+  background: #16631f;
+  color: white;
+}
+
+.nav a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+body.dark .nav a.active {
+  background: #334155;
+  color: white;
+}
+
+body.dark .nav a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.hero {
+  width: 100%;
+  height: 600px;
+  background: var(--bg-color);
+  display: flex;
+  overflow: hidden;
+}
+
+.left {
+  width: 45%;
+  padding: 80px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+  width: clamp(45vw, 50vw, 100vw);
+}
+
+.left h1 {
+  font-size: 52px;
+  line-height: 1.15;
+  color: var(--header-bg);
+  font-weight: 700;
+}
+body.dark .left h1 {
+  color: var(--accent);
+}
+
+.left p {
+  margin-top: 22px;
+  font-size: 20px;
+  line-height: 1.8;
+  color: var(--text-color);
+  max-width: 90%;
+}
+
+.right {
+  width: 55%;
+  display: flex;
+}
+
+.image-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-wrap::before {
+  content: "";
+  position: absolute;
+  left: -120px;
+  top: 0;
+  width: 240px;
+  height: 100%;
+  background: var(--bg-color);
+  border-radius: 0 100% 100% 0;
+  z-index: 2;
+}
+
+.image-wrap::after {
+  content: "";
+  position: absolute;
+  left: -95px;
+  top: 0;
+  width: 280px;
+  height: 100%;
+  border-right: 4px solid var(--accent);
+  border-radius: 0 100% 100% 0;
+  z-index: 3;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .left {
+    padding: 40px;
+  }
+
+  .image-wrap::before,
+  .image-wrap::after {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    padding-left: 15px;
+  }
+  img {
+    width: 33px;
+  }
+  .logo {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: clamp(185px, 50vw, 500px);
+    font-size: clamp(15px, 3vw, 24px);
+  }
+}
+@media (min-width: 768px) and (max-width: 1023) {
+}
+@media (min-width: 1024px) {
+}
